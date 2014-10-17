@@ -1,0 +1,137 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<script type="text/javascript">
+		
+		function changecolor(){
+			var content = document.getElementsByClassName("website");
+			for (var i = content.length - 1; i >= 0; i--){
+				if(content[i].innerText=="人人贷"){
+					content[i].style.color = "red";
+				}else if(content[i].innerText=="拍拍贷"){
+					content[i].style.color = "blue";
+				}else{
+					content[i].style.color = "green";
+				}
+			}
+		}
+		
+		function reflesh(){	
+	
+		document.location.reload();
+		}
+		setTimeout("reflesh()",60*1000*2);
+	
+	</script>
+	
+	<style>
+	
+		.website{
+			color:red;
+			text-align:center;
+			font-family:"黑体";
+			
+		}
+		.loantype{
+			color:blue;
+			text-align:center;
+			font-family:"黑体";
+		}
+	
+	</style>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</h:head>
+<h:body>
+	<p:tabMenu activeIndex="0">
+		<p:menuitem value="首页" url="#" icon="ui-icon-star" />
+		<p:menuitem value="网贷计算器" url="#"  />
+		<p:menuitem value="平台比较" url="#"  />
+		<p:menuitem value="联系我们" url="/contacts.xhtml" />
+	</p:tabMenu>
+
+
+<h:form>  
+		
+		
+  
+    <p:dataTable id="dataTable" var="lfb" value="#{tableBean2.loanInfoList}" emptyMessage="No cars found with given criteria">  
+        <f:facet name="header">  
+            	实时数据 
+        </f:facet>  
+        
+      
+  
+  			
+        <p:column  headerText="平台"  sortBy="#{lfb.websiteName}" >  
+            <div class="website"><h:outputText value="#{lfb.websiteName}" /></div>  
+        </p:column>  
+       
+        
+          <p:column  sortBy="#{lfb.loanType}" headerText="类型" >  
+            <div class="loantype"><h:outputText value="#{lfb.loanType}" /> </div>
+        </p:column>  
+        
+          <p:column  headerText="发布人">  
+           <a href="#{lfb.detailURL}" title="#{lfb.title}"> <h:outputText value="#{lfb.obligorId}" /> </a>
+        </p:column>  
+        
+          <p:column sortBy="#{lfb.money}" headerText="金额">  
+            <h:outputText value="￥#{lfb.money}" />  
+        </p:column>  
+        
+          <p:column sortBy="#{lfb.durationMonths}" headerText="期限">  
+            <h:outputText value="#{lfb.durationMonths}月" />  
+        </p:column>  
+        
+          <p:column sortBy="#{lfb.yearInterestRate}" headerText="年利率">  
+            <h:outputText value="#{lfb.yearInterestRate}%" />  
+        </p:column>  
+        
+        <p:column sortBy="#{lfb.yearIncomeRate}" headerText="年收益">  
+            <h:outputText value="#{lfb.yearIncomeRate}%" />  
+        </p:column>  
+        
+        <p:column sortBy="#{lfb.monthInterestRate}" headerText="月息">  
+            <h:outputText value="#{lfb.monthInterestRate}%" />  
+        </p:column>  
+        
+        <p:column sortBy="#{lfb.managementRate}" headerText="管理费">  
+            <h:outputText value="#{lfb.managementRate}%" />  
+        </p:column>  
+        
+          <p:column sortBy="#{lfb.bonusRate}" headerText="奖励率">  
+            <h:outputText value="#{lfb.bonusRate}%" />  
+        </p:column>  
+        
+          <p:column sortBy="#{lfb.progress}" headerText="进度">  
+            <h:outputText value="#{lfb.progress}%" />  
+        </p:column>  
+        
+          <p:column sortBy="#{lfb.bidEndTime}" headerText="结束时间">  
+            <h:outputText value="#{lfb.bidEndTime}" />  
+        </p:column>  
+  		
+  		  <p:column sortBy="#{lfb.repaymentMode}" headerText="还款方式">  
+            <h:outputText value="#{lfb.repaymentMode}" />  
+        </p:column>  
+		
+		  <p:column sortBy="#{lfb.loanStatus}" headerText="贷款状态">  
+            <h:outputText value="#{lfb.loanStatus}" />  
+        </p:column>        
+        
+       
+        
+        
+        
+        
+          
+    </p:dataTable>  
+  
+</h:form>  
+              
+</h:body>
+
+</html>
