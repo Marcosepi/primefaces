@@ -35,7 +35,26 @@
         <url>http://repository.jboss.org/nexus/content/groups/public-jboss/</url>
     </repository>
 </repositories> 
-
+<reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-pmd-plugin</artifactId>
+        <version>3.2</version>
+        <configuration>
+          <rulesets>
+            <!-- Two rule sets that come bundled with PMD -->
+            <ruleset>/rulesets/java/braces.xml</ruleset>
+            <ruleset>/rulesets/java/naming.xml</ruleset>
+            <!-- Custom local file system rule set -->
+            <ruleset>d:\rulesets\strings.xml</ruleset>
+            <!-- Custom remote rule set accessed via a URL -->
+            <ruleset>http://localhost/design.xml</ruleset>
+          </rulesets>
+        </configuration>
+      </plugin>
+    </plugins>
+  </reporting>
 <dependencies>
 
 	<dependency>
